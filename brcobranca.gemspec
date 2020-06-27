@@ -26,4 +26,5 @@ Gem::Specification.new do |gem|
   gem.add_dependency 'rghost_barcode', '~> 0.9'
   gem.add_dependency 'parseline', '~> 1.0.3'
   gem.add_dependency 'unidecoder', '>= 1.1.2'
+  gem.add_dependency 'mini_magick', '>= 4.5.1'
 end

@@ -141,7 +141,7 @@ module Brcobranca
           @x = 0.50
           @y = 27.42
           # LOGOTIPO do BANCO
-          doc.image boleto.logo_empresa || boleto.logotipo, x: "#{@x} cm", y: "#{@y} cm"
+          doc.image boleto.logoempresa || boleto.logotipo, x: "#{@x} cm", y: "#{@y} cm"
           # Dados
 
           move_more(doc, 4.84, 0.02)

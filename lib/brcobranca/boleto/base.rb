@@ -1,6 +1,10 @@
 # -*- encoding: utf-8 -*-
 #
 # @author Kivanio Barbosa
+
+require 'securerandom'
+require 'mini_magick'
+
 module Brcobranca
   module Boleto
     # Classe base para todas as classes de boletos
@@ -125,6 +129,24 @@ module Brcobranca
           File.join(File.dirname(__FILE__), '..', 'arquivos', 'logos', "#{class_name}_carne.eps")
         else
           File.join(File.dirname(__FILE__), '..', 'arquivos', 'logos', "#{class_name}.eps")
+        end
+      end
+
+      def logoempresa
+        if logo_empresa != nil
+          name = "/tmp/#{SecureRandom.hex}.jpg"
+          File.open(name, 'w') { |file| file.write(Base64.decode64(logo_empresa)) }
+          image = MiniMagick::Image.open(Base64.decode64(logo_empresa))
+          if Brcobranca.configuration.gerador == :rghost_carne
+            image.resize "121x22"
+          else
+            image.resize "170x30"
+          end
+          image.write(name)
+          print "Logo da empresa em: #{name}\n"
+          name
+        else
+          nil
         end
       end
 

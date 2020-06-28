@@ -136,7 +136,7 @@ module Brcobranca
         if logo_empresa != nil
           name = "/tmp/#{SecureRandom.hex}.jpg"
           File.open(name, 'w') { |file| file.write(Base64.decode64(logo_empresa)) }
-          image = MiniMagick::Image.open(Base64.decode64(logo_empresa))
+          image = MiniMagick::Image.new(name)
           if Brcobranca.configuration.gerador == :rghost_carne
             image.resize "121x22"
           else

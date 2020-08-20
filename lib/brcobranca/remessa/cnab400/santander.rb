@@ -205,10 +205,11 @@ module Brcobranca
         # @return [String]
         #
         def total_titulos
-          #total = sprintf "%.2f", pagamentos.map(&:valor.to_s.to_f).inject(:+)
-          puts pagamentos.inspect
-          total = sprintf "%.2f", pagamentos.map{ |r| r[:valor].to_f }.inject(0, :+)
-
+          sum = 0
+          pagamentos.each do |row|
+            sum += row.valor.to_s.to_f
+          end
+          total = sprintf "%.2f", sum
           total.to_s.somente_numeros.rjust(13, "0")
         end
 

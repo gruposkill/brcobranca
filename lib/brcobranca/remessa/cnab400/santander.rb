@@ -86,6 +86,15 @@ module Brcobranca
           # num. sequencial       [6]        000001
           "01REMESSA01COBRANCA       #{info_conta}#{empresa_mae[0..29].to_s.ljust(30, ' ')}#{cod_banco}#{nome_banco}#{data_geracao}#{zeros}#{complemento}#{versao}000001"
         end
+        
+        # Dígito verificador do nosso número.
+        # @return [String] 1 caracteres numéricos.
+        def nosso_numero_dv(nosso_numero)
+          nosso_numero.modulo11(
+            multiplicador: (2..9).to_a,
+            mapeamento: { 10 => 0, 11 => 0 }
+          ) { |total| 11 - (total % 11) }
+        end
 
         # Detalhe do arquivo
         #
@@ -104,7 +113,8 @@ module Brcobranca
           detalhe << documento_cedente.to_s.rjust(14, '0')                  # cpf/cnpj da empresa                   9[14]
           detalhe << codigo_transmissao                                     # Código de Transmissão                 9[20]
           detalhe << pagamento.documento_ou_numero.to_s.ljust(25, ' ')                                      # identificacao do tit. na empresa      X[25]
-          detalhe << pagamento.nosso_numero.to_s.rjust(8, '0')              # nosso numero                          9[8]
+          detalhe << pagamento.nosso_numero.to_s.rjust(7, '0')              # nosso numero                          9[7]
+          detalhe << nosso_numero_dv(pagamento.nosso_numero).to_s           # dv nosso numero                       9[1]
           detalhe << pagamento.formata_data_segundo_desconto                # data limite para o segundo desconto   9[06]
           detalhe << ''.rjust(1, ' ')                                       # brancos                               X[1]
           detalhe << pagamento.codigo_multa                                 # Com multa = 4, Sem multa = 0          9[1]

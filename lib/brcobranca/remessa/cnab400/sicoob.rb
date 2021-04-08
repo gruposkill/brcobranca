@@ -212,7 +212,7 @@ module Brcobranca
           # 22 = Parcela de Consórcio
           # 99 = Outros"
           detalhe << pagamento.especie_titulo                               # Espécie de documento                  9[02]
-          detalhe << '0'                                                    # aceite (A=1/N=0)                      X[01]
+          detalhe << pagamento.aceite == 'A' ? '1' : '0'                    # aceite (A=1/N=0)                      X[01]
           detalhe << pagamento.data_emissao.strftime('%d%m%y')              # data de emissao                       9[06]
 
           # "Primeira instrução codificada:

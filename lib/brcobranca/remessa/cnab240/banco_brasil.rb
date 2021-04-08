@@ -208,7 +208,7 @@ module Brcobranca
           # Duplicata Mercantil, Rural e de Serviço, Letra de Câmbio, e
           # Certidão de Dívida Ativa da União, dos Estados e do Município.
           segmento_p << especie_titulo                                  # especie do titulo                     2
-          segmento_p << aceite                                          # aceite                                1
+          segmento_p << pagamento.aceite || 'N'                                          # aceite                                1
           segmento_p << pagamento.data_emissao.strftime('%d%m%Y')       # data de emissao titulo                8
           segmento_p << pagamento.tipo_mora                             # cod. do juros                         1
           segmento_p << data_mora(pagamento)                            # data juros                            8

@@ -38,7 +38,7 @@ module Brcobranca
           # :zeros, 62..69
 
           # :nosso_numero, 70..81 # identificacao do titulo no banco
-          parse.field :nosso_numero, 70..81
+          parse.field :nosso_numero, 70..80
 
           # :zeros, 82..91 # uso do banco
           # :zeros, 92..103 # uso do banco

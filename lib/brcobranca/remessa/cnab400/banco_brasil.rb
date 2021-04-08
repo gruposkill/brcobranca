@@ -126,7 +126,7 @@ module Brcobranca
           detalhe << '0000'                                                   # prefixo da agencia cobradora      9[04] 143 a 146
           detalhe << ' '                                                      # digito da agencia cobradora       X[01] 147 a 147
           detalhe << pagamento.especie_titulo                                 # especie do titulo                 9[02] 148 a 149
-          detalhe << aceite                                                   # aceite do titulo                  X[01] 150 a 150
+          detalhe << pagamento.aceite || 'N'                                  # aceite (A/N)                      X[01] 150 a 150
           detalhe << pagamento.data_emissao.strftime('%d%m%y')                # data de emissao                   9[06] 151 a 156
           detalhe << pagamento.cod_primeira_instrucao.to_s.rjust(2, '0')      # cod. primeira instrucao           9[02] 157 a 158
           detalhe << pagamento.cod_segunda_instrucao.to_s.rjust(2, '0')       # cod. segunda instrucao            9[02] 159 a 160

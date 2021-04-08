@@ -160,7 +160,7 @@ module Brcobranca
           segmento_p << ''.rjust(5, '0')                                # agencia cobradora                     5
           segmento_p << dv_agencia_cobradora                            # dv agencia cobradora                  1
           segmento_p << especie_titulo                                  # especie do titulo                     2
-          segmento_p << aceite                                          # aceite                                1
+          segmento_p << pagamento.aceite || 'N'                         # aceite                                1
           segmento_p << pagamento.data_emissao.strftime('%d%m%Y')       # data de emissao titulo                8
           segmento_p << pagamento.tipo_mora                             # cod. do mora                          1
           segmento_p << data_mora(pagamento)                            # data mora                             8

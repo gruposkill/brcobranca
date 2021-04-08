@@ -158,7 +158,7 @@ module Brcobranca
           # 06 = DUPLICATA DE SERVIÇO
           # 07 = LETRA DE CAMBIO
           detalhe << pagamento.especie_titulo                               # Espécie de documento                  9[02]
-          detalhe << aceite                                                 # aceite (A/N)                          X[01]
+          detalhe << pagamento.aceite || 'N'                                # aceite (A/N)                          X[01]
           detalhe << pagamento.data_emissao.strftime('%d%m%y')              # data de emissao                       9[06]
 
           # Instrução cobrança

@@ -29,6 +29,8 @@ module Brcobranca
       attr_accessor :uf_sacado
       # <b>REQUERIDO</b>: Código da ocorrência
       attr_accessor :identificacao_ocorrencia
+      # <b>OPCIONAL</b>: aceite (A = ACEITO/N = NAO ACEITO)
+      attr_accessor :aceite
       # <b>OPCIONAL</b>: nome do avalista
       attr_accessor :nome_avalista
       # <b>OPCIONAL</b>: documento do avalista

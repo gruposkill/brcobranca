@@ -169,8 +169,8 @@ module Brcobranca
           # 06 = PROTESTAR (VIDE POSIÇÃO392/393)
           # 07 = NÃO PROTESTAR
           # 08 = NÃO COBRAR JUROS DE MORA
-          detalhe << pagamento.cod_primeira_instrucao                       # primeira instrução                    9[02]
-          detalhe << pagamento.cod_segunda_instrucao                        # segunda instrução                     9[02]
+          detalhe << pagamento.cod_primeira_instrucao.to_s.rjust(2, '0')    # primeira instrução                    9[02]
+          detalhe << pagamento.cod_segunda_instrucao.to_s.rjust(2, '0')     # segunda instrução                     9[02]
           detalhe << pagamento.formata_valor_mora                           # valor mora ao dia                     9[13]
           detalhe << pagamento.formata_data_desconto                        # data limite para desconto             9[06]
           detalhe << pagamento.formata_valor_desconto                       # valor do desconto                     9[13]

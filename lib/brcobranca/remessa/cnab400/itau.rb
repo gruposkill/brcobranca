@@ -130,8 +130,7 @@ module Brcobranca
           detalhe << pagamento.uf_sacado                                    # uf do pagador                         X[02] 350-351
           detalhe << pagamento.nome_avalista.format_size(30)                # nome do sacador/avalista              X[30] 352-381
           detalhe << ''.rjust(4, ' ')                                       # complemento do registro               X[04] 382-385
-          detalhe << ''.rjust(6, '0')                                       # data da mora                          9[06] 386-391
-          # detalhe << pagamento.data_mora ? (pagamento.data_mora.strftime('%d%m%y')) : (''.rjust(6, '0'))                                       # data da mora                          9[06] 386-391
+          detalhe << ((!pagamento.data_mora.nil? && !pagamento.data_more.strftime.nil?) ? pagamento.data_mora.strftime('%d%m%y') : ''.rjust(6, '0')) # data da mora                          9[06] 386-391
           detalhe << prazo_instrucao(pagamento)                             # prazo para a instrução                9[02] 392-393
           detalhe << ''.rjust(1, ' ')                                       # complemento do registro (brancos)     X[01] 394-394
           detalhe << sequencial.to_s.rjust(6, '0')                          # numero do registro no arquivo         9[06] 395-400

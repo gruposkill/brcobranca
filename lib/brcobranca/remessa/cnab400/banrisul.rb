@@ -130,7 +130,7 @@ module Brcobranca
 
         def codigo_primeira_instrucao(pagamento)
           return "18" if pagamento.percentual_multa.to_f > 0.00
-          pagamento.cod_primeira_instrucao
+          pagamento.cod_primeira_instrucao || '0'
         end
 
         def tipo_mora(pagamento)

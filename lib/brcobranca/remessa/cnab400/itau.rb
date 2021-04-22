@@ -112,8 +112,8 @@ module Brcobranca
           detalhe << '99'                                                   # especie  do titulo                    X[02] 148-149
           detalhe << pagamento.aceite || 'N'                                # aceite (A/N)                          X[01] 150-150
           detalhe << pagamento.data_emissao.strftime('%d%m%y')              # data de emissao                       9[06] 151-156
-          detalhe << pagamento.cod_primeira_instrucao.to_s.rjust(2, '0')    # 1a instrucao - deixar zero            X[02] 157-158
-          detalhe << pagamento.cod_segunda_instrucao.to_s.rjust(2, '0')     # 2a instrucao - deixar zero            X[02] 159-160
+          detalhe << (pagamento.cod_primeira_instrucao || '0').to_s.rjust(2, '0')    # 1a instrucao - deixar zero            X[02] 157-158
+          detalhe << (pagamento.cod_segunda_instrucao || '0').to_s.rjust(2, '0')     # 2a instrucao - deixar zero            X[02] 159-160
           detalhe << pagamento.formata_valor_mora                           # valor mora ao dia                     9[13] 161-173
           detalhe << pagamento.formata_data_desconto                        # data limite para desconto             9[06] 174-179
           detalhe << pagamento.formata_valor_desconto                       # valor do desconto                     9[13] 180-192
